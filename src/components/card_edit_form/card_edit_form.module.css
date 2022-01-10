@@ -1,14 +1,15 @@
-@value myproBlack, myproWhite, myproLighBlue, myproLighterGrey from '../../common/colors.module.css';
+@value myproBlack, myproWhite, myproLightBlue, myproLighterGrey from '../../common/colors.module.css';
 
 .cardForm {
     display: flex;
     flex-wrap: wrap;
     margin: 1em 2em;
     padding: 1em;
-    background-color: myproLighBlue;
+    background-color: myproLightBlue;
 }
 
-.input {
+.input,
+.select {
     flex: 1 1 30%;
 }
 

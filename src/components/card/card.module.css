@@ -1,0 +1,51 @@
+@value myproLighterGrey, myproShadow from '../../common/colors.module.css';
+
+.card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 1em 2em;
+    padding: 2em 0;
+    border-radius: 1em;
+    box-shadow: 6px 6px 8px 0px myproLighterGrey;
+    max-width: 30rem;
+}
+
+.img {
+    width: 8em;
+    height: 8em;
+    margin: 0 1em;
+    padding: 0.5em;
+    border-radius: 50%;
+}
+
+.info {
+    width: 100%;
+}
+
+.name,
+.company,
+.title,
+.email,
+.message {
+    margin: 0;
+    font-size: 0.8rem;
+    margin-bottom: 0.2em;
+}
+
+.name {
+    font-size: 1.2rem;
+}
+
+.company {
+    margin-bottom: 1em;
+}
+
+.company::after {
+    content: '';
+    display: block;
+    width: 90%;
+    height: 2px;
+    background-color: myproLighterGrey;
+    transform: translateY(0.5em);
+}

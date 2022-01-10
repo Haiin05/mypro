@@ -3,7 +3,9 @@ import styles from './maker.module.css'
 
 const Maker = () => (
 	<section className={ styles.maker }>
-		<CardEditForm />
+		<ul className={ styles.forms }>
+			<CardEditForm />
+		</ul>
 	</section>
 )
 

@@ -1,4 +1,5 @@
 @value mediaQuery from '../../common/size.module.css';
+@value myproLighterGrey from '../../common/colors.module.css';
 
 .main {
     width: 100%;
