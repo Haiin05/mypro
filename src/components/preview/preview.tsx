@@ -1,7 +1,7 @@
 import styles from './preview.module.css'
 
 const Preview = () => (
-	<section>preview</section>
+	<section className={ styles.preview }>preview</section>
 
 )
 
