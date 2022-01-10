@@ -1,8 +1,10 @@
-import {getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider} from "firebase/auth"
+import { getAuth, signInWithPopup, signOut, GoogleAuthProvider, GithubAuthProvider, onAuthStateChanged } from "firebase/auth"
 
 export interface I_AuthService {
 	auth: any
 	login: (providerName: string) => any
+	logout: () => any
+	onAuthChanged: (callback: any) => void
 }
 
 
@@ -16,6 +18,16 @@ class AuthService implements I_AuthService {
 
 	login(providerName: string) {
 		return signInWithPopup(this.auth, this.getProvider(providerName)!)
+	}
+
+	logout() {
+		return signOut(this.auth)
+	}
+
+	onAuthChanged(callback: any) {
+		onAuthStateChanged(this.auth, user => {
+			callback(user)
+		})
 	}
 
 	google() {

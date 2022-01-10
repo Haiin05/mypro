@@ -1,6 +1,5 @@
+import { userStore } from "./userStore"
 
-const useStore = () => ({
-
-})
+const useStore = () => ({ userStore })
 
 export default useStore

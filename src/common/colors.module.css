@@ -1,0 +1,23 @@
+@value myproBlack: black;
+
+@value myproWhite: white;
+
+@value myproLightGrey: #e8e7e6;
+
+@value myproLightPink: #ffeae8;
+
+@value myproGrey: #626262;
+
+@value myproGreen: #385461;
+
+@value myproPink: pink;
+
+@value myproShadow: rgba(217, 217, 217, 1);
+
+@value myproColorful: linear-gradient(166deg, rgba(237, 193, 211, 1) 0%,rgba(212, 149, 161, 1) 60%, rgba(162, 63, 63, 1) 100%, rgba(127, 188, 242, 1) 100%);
+
+@value myproWheat: wheat;
+
+@value myproGoogle: #ED3721;
+
+@value myproGithub: #2DB403;
