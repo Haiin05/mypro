@@ -7,6 +7,8 @@ interface I_preview {
 }
 
 const Preview = ({ cards }: I_preview) => {
+	console.log('preview: ', JSON.stringify(cards))
+	console.log(Object.keys(cards))
 
 	return (
 		<section className={styles.preview}>

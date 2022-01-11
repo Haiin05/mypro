@@ -1,0 +1,47 @@
+@value myproBlack, myproWhite, myproLightBlue, myproLighterGrey from '../../common/colors.module.css';
+
+.cardForm {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1em 2em;
+    padding: 1em;
+    background-color: myproLightBlue;
+}
+
+.input,
+.select {
+    flex: 1 1 30%;
+}
+
+.text {
+    flex-basis: 100%;
+}
+
+.input,
+.select,
+.btn,
+.text,
+.image {
+    margin: 0.5em;
+    padding: 0.5em;
+    border: 1px solid myproLighterGrey;
+}
+
+.input:focus,
+.text:focus,
+.select:focus,
+.button:focus {
+    outline: 0;
+}
+
+.image,
+.btn {
+    flex: 1 1 40%;
+    cursor: pointer;
+    background-color: myproLighterGrey;
+}
+
+.image:hover,
+.btn:hover {
+    opacity: 80%;
+}

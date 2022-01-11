@@ -21,8 +21,11 @@ const Main = observer(({ authService }: I_main) => {
 	const history = useHistory()
 
 	const updateCard = (card: I_card) => {
-		console.log('main-updatecard: ', card)
 		mainPresenter.update(card)
+	}
+
+	const addCard = (card: I_card) => {
+		mainPresenter.add(card)
 	}
 
 	const deleteCard = (card: I_card) => {
@@ -38,12 +41,13 @@ const Main = observer(({ authService }: I_main) => {
 			}
 		})
 	})
+	console.log('main', JSON.stringify(mainPresenter.getCardList()))
 
 	return (
 		<section className={styles.main}>
 			<Header authService={authService} />
 			<div className={styles.container}>
-				<Maker cards={mainPresenter.getCardList()} onUpdate={updateCard} onDelete={deleteCard} />
+				<Maker cards={mainPresenter.getCardList()} onUpdate={updateCard} onAdd={addCard} onDelete={deleteCard} />
 				<Preview cards={mainPresenter.getCardList()} />
 			</div>
 			<Footer />

@@ -30,9 +30,16 @@ class MainPresenter {
 
 	update = (card: I_card) => {
 		const update = { ...this.cardList }
-		console.log(update)
+		console.log('update: ', update)
 		update[card.id] = card
+		console.log('card: ', card)
 		return this.cardList = update
+	}
+
+	add = (card: I_card) => {
+		console.log(card)
+		let randomNum = Date.now()
+		return this.cardList = { ...this.cardList, randomNum: card }
 	}
 
 	delete = (card: I_card) => {
