@@ -27,7 +27,7 @@ const CardAddForm = ({ onAdd }: I_cardAddForm) => {
 			message: messageRef.current?.value || '',
 			image: ''
 		}
-		onAdd(card)
+		onAdd(card,)
 		formRef.current?.reset()
 	}
 

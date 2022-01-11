@@ -1,20 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useHistory } from "react-router-dom"
+import { observer } from 'mobx-react'
+import { authService } from '../../service/auth_service'
+import { cardRespository } from '../../service/card_repository';
+import { I_card } from './mainPresenter';
+import useStore from '../../store'
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import Maker from '../maker/maker';
 import Preview from '../preview/preview';
 import styles from './main.module.css'
-import useStore from '../../store'
-import { I_AuthService } from '../../service/auth_service'
-import { useHistory } from "react-router-dom"
-import { observer } from 'mobx-react'
-import { I_card } from './mainPresenter';
 
-interface I_main {
-	authService: I_AuthService
-}
 
-const Main = observer(({ authService }: I_main) => {
+const Main = observer(() => {
 
 	const { userStore, mainPresenter } = useStore()
 
@@ -22,14 +20,12 @@ const Main = observer(({ authService }: I_main) => {
 
 	const updateCard = (card: I_card) => {
 		mainPresenter.update(card)
-	}
-
-	const addCard = (card: I_card) => {
-		mainPresenter.add(card)
+		cardRespository.saveData(userStore.getUserUid(), card)
 	}
 
 	const deleteCard = (card: I_card) => {
 		mainPresenter.delete(card)
+		cardRespository.removeData(userStore.getUserUid(), card)
 	}
 
 	useEffect(() => {
@@ -41,13 +37,21 @@ const Main = observer(({ authService }: I_main) => {
 			}
 		})
 	})
-	console.log('main', JSON.stringify(mainPresenter.getCardList()))
+
+	useEffect(() => {
+		const userId = userStore.getUserUid()
+		if (!userId) {
+			return
+		}
+		const stopSync = cardRespository.syncCards(userId, (cards: any) => mainPresenter.setCardList(cards))
+		return () => stopSync()
+	})
 
 	return (
 		<section className={styles.main}>
 			<Header authService={authService} />
 			<div className={styles.container}>
-				<Maker cards={mainPresenter.getCardList()} onUpdate={updateCard} onAdd={addCard} onDelete={deleteCard} />
+				<Maker cards={mainPresenter.getCardList()} onUpdate={updateCard} onDelete={deleteCard} />
 				<Preview cards={mainPresenter.getCardList()} />
 			</div>
 			<Footer />

@@ -1,4 +1,5 @@
 import { getAuth, signInWithPopup, signOut, GoogleAuthProvider, GithubAuthProvider, onAuthStateChanged } from "firebase/auth"
+import firebaseApp from "./firebase"
 
 export interface I_AuthService {
 	auth: any
@@ -52,3 +53,4 @@ class AuthService implements I_AuthService {
 }
 
 export default AuthService
+export const authService = new AuthService(firebaseApp)

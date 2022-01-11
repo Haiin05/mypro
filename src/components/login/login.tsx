@@ -1,14 +1,10 @@
-import { I_AuthService } from '../../service/auth_service'
+import { useEffect } from 'react'
+import { authService } from '../../service/auth_service'
 import { useHistory } from "react-router-dom"
 import styles from './login.module.css'
 import useStore from '../../store'
-import { useEffect } from 'react'
 
-interface I_login {
-	authService: I_AuthService
-}
-
-const Login = ({ authService }: I_login) => {
+const Login = () => {
 
 	const { userStore } = useStore()
 
@@ -27,29 +23,25 @@ const Login = ({ authService }: I_login) => {
 
 	useEffect(() => {
 		authService.onAuthChanged((user: any) => {
-			if (user) {
-				history.push('/')
-			} else {
-
-			}
+			user && history.push('/')
 		})
 	})
 
 	return (
-		<section className={ styles.login }>
-			<h1 className={ styles.title }>Login</h1>
-			<ul className={ styles.ul }>
-				<li className={ styles.li } onClick={ login }>
-					<button className={ styles.btn }>
-						<div className={ styles.icon }>
+		<section className={styles.login}>
+			<h1 className={styles.title}>Login</h1>
+			<ul className={styles.ul}>
+				<li className={styles.li} onClick={login}>
+					<button className={styles.btn}>
+						<div className={styles.icon}>
 							<i className="fab fa-google"></i>
 						</div>
 						<div>Google</div>
 					</button>
 				</li>
-				<li className={ styles.li } onClick={ login }>
-					<button className={ styles.btn }>
-						<div className={ styles.icon }>
+				<li className={styles.li} onClick={login}>
+					<button className={styles.btn}>
+						<div className={styles.icon}>
 							<i className="fab fa-github"></i>
 						</div>
 						<div>
