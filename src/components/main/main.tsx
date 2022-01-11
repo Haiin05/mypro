@@ -7,49 +7,27 @@ import styles from './main.module.css'
 import useStore from '../../store'
 import { I_AuthService } from '../../service/auth_service'
 import { useHistory } from "react-router-dom"
+import { observer } from 'mobx-react'
+import { I_card } from './mainPresenter';
 
 interface I_main {
 	authService: I_AuthService
 }
 
-export interface I_Form {
-	id: number,
-	name: string,
-	company: string,
-	title: string,
-	theme: string,
-	message: string,
-	email: string,
-	image: string
-}
+const Main = observer(({ authService }: I_main) => {
 
-const mockData = [
-	{
-		id: 1,
-		name: 'haiin',
-		company: 'haiin company',
-		title: 'frontend developer',
-		theme: 'light', message: 'lalal',
-		email: 'h@gmail.com', image: ''
-	},
-	{
-		id: 2,
-		name: 'haiin2',
-		company: 'lulu company',
-		title: 'frontend developer',
-		theme: 'dark', message: 'lalal',
-		email: 'h1@gmail.com', image: ''
-	},
-]
-
-
-const Main = ({ authService }: I_main) => {
-
-	const { userStore } = useStore()
+	const { userStore, mainPresenter } = useStore()
 
 	const history = useHistory()
 
-	const [cards, setCards] = useState([...mockData])
+	const updateCard = (card: I_card) => {
+		console.log('main-updatecard: ', card)
+		mainPresenter.update(card)
+	}
+
+	const deleteCard = (card: I_card) => {
+		mainPresenter.delete(card)
+	}
 
 	useEffect(() => {
 		authService.onAuthChanged((user: any) => {
@@ -62,16 +40,16 @@ const Main = ({ authService }: I_main) => {
 	})
 
 	return (
-		<section className={ styles.main }>
-			<Header authService={ authService } />
-			<div className={ styles.container }>
-				<Maker />
-				<Preview cards={ cards } />
+		<section className={styles.main}>
+			<Header authService={authService} />
+			<div className={styles.container}>
+				<Maker cards={mainPresenter.getCardList()} onUpdate={updateCard} onDelete={deleteCard} />
+				<Preview cards={mainPresenter.getCardList()} />
 			</div>
 			<Footer />
 		</section>
 	)
-}
+})
 
 
 export default Main

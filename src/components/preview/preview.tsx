@@ -1,18 +1,18 @@
 import Card from '../card/card'
-import { I_Form } from '../main/main'
+import { I_card } from '../main/mainPresenter'
 import styles from './preview.module.css'
 
 interface I_preview {
-	cards: Array<I_Form>
+	cards: any
 }
 
 const Preview = ({ cards }: I_preview) => {
 
 	return (
-		<section className={ styles.preview }>
-			<ul className={ styles.cards }>
-				{ cards.map((card) => <Card key={ card.id } card={ card } />
-				) }
+		<section className={styles.preview}>
+			<ul className={styles.cards}>
+				{Object.keys(cards).map((key) => <Card key={key} card={cards[key]} />
+				)}
 			</ul>
 		</section>
 	)
