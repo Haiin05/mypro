@@ -1,0 +1,54 @@
+@value myproLighterGrey, myproLightPink from '../../common/colors.module.css';
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    display: none;
+}
+
+.button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    background-color: myproLighterGrey;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.button.grey {
+    background-color: myproLighterGrey;
+}
+
+.button.pink {
+    background-color: myproLightPink;
+}
+
+.loading {
+    width: 1.5em;
+    height: 1.5em;
+    border: 3px solid myproLighterGrey;
+    border-radius: 50%;
+    border-top: 3px solid myproLightPink;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

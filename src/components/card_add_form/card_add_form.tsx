@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import ImageUpload from '../image_upload/image_upload';
 import { I_card } from '../main/mainPresenter';
 import styles from './card_add_form.module.css'
 
@@ -6,7 +7,15 @@ interface I_cardAddForm {
 	onAdd: (card: I_card) => void
 }
 
+export interface I_file {
+	name: string | null
+	url: string | null
+}
+
 const CardAddForm = ({ onAdd }: I_cardAddForm) => {
+
+	const [file, setFile] = useState<I_file>({ name: null, url: null })
+
 	const formRef = useRef<HTMLFormElement>(null)
 	const nameRef = useRef<HTMLInputElement>(null)
 	const companyRef = useRef<HTMLInputElement>(null)
@@ -25,10 +34,16 @@ const CardAddForm = ({ onAdd }: I_cardAddForm) => {
 			email: emailRef.current?.value || '',
 			theme: themeRef.current?.value || '',
 			message: messageRef.current?.value || '',
-			image: ''
+			fileName: file.name || '',
+			fileURL: file.url || ''
 		}
-		onAdd(card,)
+		onAdd(card)
 		formRef.current?.reset()
+		setFile({ name: null, url: null })
+	}
+
+	const onFileChange = (file: I_file) => {
+		setFile(file)
 	}
 
 	return (
@@ -43,7 +58,9 @@ const CardAddForm = ({ onAdd }: I_cardAddForm) => {
 				<option value="colorful">colorful</option>
 			</select>
 			<textarea ref={messageRef} className={styles.text} name="message" placeholder='Message' ></textarea>
-			<div className={styles.image} >fileInput</div>
+			<div className={styles.image} >
+				<ImageUpload fileName={file.name} onFileChange={onFileChange} />
+			</div>
 			<button className={styles.btn} onClick={handleSubmit}>Add</button>
 		</form>
 	)

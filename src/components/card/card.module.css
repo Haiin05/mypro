@@ -1,4 +1,4 @@
-@value myproLighterGrey, myproShadow from '../../common/colors.module.css';
+@value myproLighterGrey, myproShadow, myproBlack ,myproWhite, myproColorful  from '../../common/colors.module.css';
 
 .card {
     width: 100%;
@@ -9,6 +9,19 @@
     border-radius: 1em;
     box-shadow: 6px 6px 8px 0px myproLighterGrey;
     max-width: 30rem;
+}
+
+.card.dark {
+    background-color: myproBlack;
+    color: makerWhite;
+}
+
+.card.light {
+    background-color: myproWhite;
+    color: makerBlack;
+}
+.card.colorful {
+    background: myproColorful;
 }
 
 .img {

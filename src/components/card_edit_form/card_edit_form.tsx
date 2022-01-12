@@ -1,3 +1,4 @@
+import ImageUpload from '../image_upload/image_upload';
 import { I_card } from '../main/mainPresenter';
 import styles from './card_edit_form.module.css'
 
@@ -9,18 +10,22 @@ interface I_cardEditForm {
 
 const CardEditForm = ({ card, onUpdate, onDelete }: I_cardEditForm) => {
 
-	const { name, company, title, email, theme, message } = card
+	const { name, company, title, email, theme, message, fileName } = card
 
 	const handelChange = (e: any) => {
 		e.preventDefault()
 		const updatedCard = { ...card, [e.currentTarget.name]: e.currentTarget.value }
-		console.log(updatedCard)
 		onUpdate(updatedCard)
 	}
 
 	const handleDelete = (e: any) => {
 		e.preventDefault()
 		onDelete(card)
+	}
+
+	const onFileChange = (file: any) => {
+		const updated = { ...card, fileName: file.name, fileURL: file.url }
+		onUpdate(updated)
 	}
 
 	return (
@@ -35,7 +40,9 @@ const CardEditForm = ({ card, onUpdate, onDelete }: I_cardEditForm) => {
 				<option value="colorful">colorful</option>
 			</select>
 			<textarea className={styles.text} name="message" placeholder='Message' value={message} onChange={handelChange}></textarea>
-			<div className={styles.image} >fileInput</div>
+			<div className={styles.image} >
+				<ImageUpload onFileChange={onFileChange} fileName={fileName} />
+			</div>
 			<button className={styles.btn} onClick={handleDelete}>Delete</button>
 		</form>
 	)

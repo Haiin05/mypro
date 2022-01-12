@@ -8,7 +8,8 @@ export interface I_card {
 	theme: string,
 	message: string,
 	email: string,
-	image: string
+	fileName: string,
+	fileURL: string
 }
 
 

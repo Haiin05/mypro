@@ -45,7 +45,7 @@ const Main = observer(() => {
 		}
 		const stopSync = cardRespository.syncCards(userId, (cards: any) => mainPresenter.setCardList(cards))
 		return () => stopSync()
-	})
+	}, [userStore.getUserUid()])
 
 	return (
 		<section className={styles.main}>
